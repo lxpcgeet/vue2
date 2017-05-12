@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+</head>
+<body>
+<div>v-for 循环显示指令   computed 计算</div>
+<br/>
+<div id="app">
+	<ul>
+		<li v-for="aa in devstudent"><!--student的别名是aa  这样不会污染代码-->
+			{{ aa }}
+		</li>
+	</ul>
+	
+	<ul>
+		<li v-for="(bb,index) in devst"><!--student的别名是aa  这样不会污染代码-->
+			{{ index }} {{ bb.name }} - {{ bb.age }}
+		</li>
+	</ul>
+</div>
+<script>
+  var vm =new Vue({//这里边的this 指向 vm 所有的变量都暴露出来了 可以直接this.student
+    el:'#app',
+    data:{
+      student:[56,22,55,2,90],
+      devstudent:'',//这个不写也可以
+      st:[
+	{name:'wos',age:'35'},
+	{name:'taobao',age:'50'},
+	{name:'sanxing',age:'20'},
+	{name:'baidu',age:'10'},
+	{name:'ofo',age:'40'},
+      ]
+    },
+    computed:{//计算 排序  这个计算之后才把数据展现给用户
+      devstudent:function(){
+        //如果是编程 不是 直接赋值  要直接改名称，这样不会污染数据
+        return this.student.sort()//注意sort方法是按照a/b/c/d这样排序的  不是按照数字的大小 看3cschool
+      },
+      devst:function(){
+        return sortByKey( this.st,'age' )
+      }
+    }
+  })
+	
+	function sortNumber(a,b){//自己学习一下排序方式
+    		return a - b;
+	}
+	
+	function sortByKey(array,key){//看看这个函数的作用
+	  return array.sort(function(a,b){
+	    var x = a[key];
+	    var y = b[key];
+	    return ( (x < y) ? -1 : ( x > y ) ? 1 : 0 )
+	  })
+	}
+</script>
+</body>
+</html>
