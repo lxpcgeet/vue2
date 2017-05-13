@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+	<style>
+		.classA {
+			/*background-color:red;*/
+			color: red;
+		}
+		.classB {
+			/*background-color:yellow;*/
+			color:yellow;
+		}
+	</style>
+</head>
+<body>
+	<div>v-bind   有简写的方式@绑定事件  ：绑定属性</div>
+	<br/>
+	<div id="app">
+		<img v-bind:src='imageSrc' :width='width'/>
+		<div :class='className'>1.绑定class</div>
+		<div :class='{ classB:colorOr }'>2.绑定class中的判断</div>
+		<div :class='[classA,classB]'>3.绑定class中的数组</div>
+		<div :class='[ colorOr ? classA : classB ]'>4.绑定class使用三元表达式</div>
+		<div :class='[ {classA:colorOr},classB ]'>5.绑定class中的判断组合</div>
+
+		<br>
+
+		<div :style='{ color:red,fontSize:font  }'>6.绑定style</div><!--注意 绑定style时 key值必须是css属性 value必须是data里边的数据-->
+		<div :style='fontstyle'>7.style绑定json语句</div>
+	</div>
+
+	
+
+	<script>
+		var aaaa =new Vue({
+		  el:'#app',
+		  data:{
+		    imageSrc:'https://cn.vuejs.org/images/logo.png',
+		    width: '50',
+		    className:'classA',
+		    colorOr:true,
+		    classA:'classA',
+		    classB:'classB',
+		    red:'red',
+		    font:'50px',
+		    fontstyle:{
+		    	color: 'blue',
+		    	fontSize: '10px'
+		    }
+		  }
+		})
+	</script>
+</body>
+</html>

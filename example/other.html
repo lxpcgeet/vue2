@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div>其余的指令</div>
+	<br/>
+	<div id="app">
+		<p v-pre>{{ message }}</p>  这个指令是显示源码的意思
+		
+		<br>
+		<p v-cloak>在浏览器为客户渲染完成之前你是看不到我的</p>
+
+		<br>
+		<p v-once> 原来输入的是：{{ message }} </p>  v-once 只显示一次的意思
+		<textarea cols='30' rows='10' v-model='message'></textarea>
+
+
+	<script>
+		var aaaa =new Vue({
+		  el:'#app',
+		  data:{
+		    message:'hello vue!'
+		  }
+		})
+	</script>
+</body>
+</html>
