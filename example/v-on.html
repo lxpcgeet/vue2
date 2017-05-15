@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+</head>
+<body>
+<div>v-on 构造器里要触发的事件</div>
+<br/>
+<div id="app">
+	<p>{{ a }}</p>
+	<p>
+		<button v-on:click="jia">+1</button>
+		<button @click="jian">-1</button>
+	</p>
+	<p>
+		<input type="text" @keyup.enter="onEnter" v-model="b"/><!--绑定model之后value变成了文本 不是数字-->
+		<input type="text" @keyup.13="onEnter" v-model="b"/><!--13可以直接写成键盘的键值-->
+	</p>
+	
+</div>
+<script>
+  var aaaa =new Vue({
+    el:'#app',
+    data:{
+      a:10,
+      b:0
+    },
+    methods:{//方式方法
+      jia:function(){
+        this.a++
+      },
+      jian:function(){
+        this.a--
+      },
+      onEnter:function(){
+        this.a=this.a+parseInt(this.b)
+      }
+    }
+  })
+</script>
+</body>
+</html>

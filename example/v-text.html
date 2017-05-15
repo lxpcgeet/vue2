@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+</head>
+<body>
+<div>v-text v-html</div>
+<br/>
+<div id="app">
+	<p>{{ message }}</p> = <p v-text="message"></p>
+	
+	<hr>
+	
+	<p>{{ messageHtem }}</p> = <p v-html="messageHtem"></p>
+	
+</div>
+<script>
+  var aaaa =new Vue({
+    el:'#app',
+    data:{
+      message:'hello vue!',
+      messageHtem:'<h1>你好</h1>'
+    }
+  })
+</script>
+</body>
+</html>
