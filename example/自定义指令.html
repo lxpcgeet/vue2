@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+</head>
+<body>
+	<div>Vue.directive 自定义指令</div>
+	<br/>
+	<div id="app">
+		<br>
+		<p v-wos.color.fontStyle='color' id='aaa'> {{num}} </p>
+
+		<p><button @click='jia'>+</button></p>
+	</div>
+
+	<button onclick='xiezai()'>卸载</button>
+	<script>
+	function xiezai(){
+		vm.$destroy();//解绑  解绑和删除元素时两回事  只是不再控制  不是删除元素
+	}
+		//自定义指令写在上面
+		Vue.directive('wos',{
+			bind:function(el,binding,vnode){//被绑定  el 一个元素
+				console.log('1-bind')
+
+				var s = JSON.stringify;
+				el.innerHTML += 
+					'name' + s(binding.name) + '<br>' + 
+					'value' + s(binding.value) + '<br>' + 
+					'expression' + s(binding.expression) + '<br>' + 
+					'argument' + s(binding.arg) + '<br>' + 
+					'modifiers' + s(binding.modifiers) + '<br>' +
+					'vnode keys' + Object.keys(vnode).join(',') ;
+					 el.style = "color:"+binding.value;
+			},
+			inserted:function(){//绑定到节点完成
+				console.log('1-inserted')
+			},
+			update:function(el,binding,vnode){//被更新
+				console.log('1-update')
+				el.style = 'color:green'
+			},
+			componentUpdated:function(){//更新完成
+				console.log('1-componentUpdated')
+			},
+			unbind:function(){//卸载
+				console.log('1-unbind')
+			}
+		})
+
+
+		var vm = new Vue({
+			el:'#app',
+			data:{
+				color:'red',
+				num:10
+			},
+			methods:{
+				jia:function(){
+					this.num++
+				}
+			}
+		})
+	</script>
+</body>
+</html>

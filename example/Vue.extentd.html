@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../assets/css/index.css"/>
+</head>
+<body>
+	<div>V-extend</div> extend 延伸   构造器的另一种写法
+	<br/>
+	<div id='header'></div>
+	<div id='footer'></div>
+	<script>
+		//只挂载无属性的标签实体
+		var header_aaa = Vue.extend({//延伸构造 数据必须是函数返回的形式
+			template:'<p>{{ message }}</p>',
+			data:function(){
+				return {
+					message:'red',
+				}
+			}
+		})
+
+		var footer_aaa = Vue.extend({
+			template:'<p>{{ message }}</p>',
+			data:function(){
+				return {
+					message:'我是底部'
+				}
+			}
+		})
+
+		new header_aaa().$mount('#header');  // $mount挂载  new 就是把这个东西的所有属性都拿过来让我_
+
+		new footer_aaa().$mount('#footer');
+	</script>
+</body>
+</html>
