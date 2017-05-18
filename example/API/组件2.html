@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>组件2 props</div>组件传值  只能是父组件 传给子组件 单向传值
+<br/>
+<div id="app">
+	<hello :here="message"></hello>
+	
+</div>
+<script>
+        worldworld = {
+	  template:'<div>my here is {{ here }}</div>',
+	  //props:['here']//props 标签上的属性值
+	  
+	  props:{//判断一下这个是否存在
+	    //基础类型检测 （null 意思是任何一个类型都可以）
+	    propA:Number,
+	    //多种类型
+	    propB:[String,Number],
+	    //必须传 并且是 数字
+	    propC:{
+	      type:String,
+	      required:true,
+	    },
+	    //数字 有默认值
+	    propD:{
+	      type:number,
+	      default:100
+	    },
+	    //数组 / 对象的默认值应当由一个工厂函数返回
+	  }
+	  
+	}
+	var vm = new Vue({
+	  el:'#app',
+	  data:{
+	    message:'NBA'
+	  },
+	  components:{
+	    'hello':worldworld
+	  }
+	})
+	
+	
+</script>
+</body>
+</html>
