@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>methods</div> 在vue里边click事件有5个修饰符  这个一定要记住
+<br/>
+<div id="app">
+	{{a}}
+	<p><button @click='jia(2,$event)'>+</button></p>
+	<btn @click.native='jia(1)'></btn>.native 是click的修饰符 表示本地的  因为这个是外部引入的
+</div>
+<button onclick='vm.jia(2)'>原生方法</button>
+
+<!--阻止单击事件冒泡-->
+<a v-on:click.stop='dothis'></a>
+
+<!--提交事件不再重载页面-->
+<form v-on:submit.prevent='onSubmit'></form>
+
+<!--添加事件侦听器 使用事件捕获模式-->
+<div v-on:click.capture='dothis'></div>
+
+<!--只当事件在该元素本身（而不是子元素）触发时，触发回调函数-->
+<div v-on:click.self='dothis'></div>
+
+<!--修饰符可以串联-->
+<a v-on:click.stop.provent='dothat'></a>
+
+
+
+<script>
+function jiajia(){
+	vm.a++
+}
+var btn = {
+	template:'<button>外部构造器</button>'
+}
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			a:1
+		},
+		methods:{
+			jia:function(num,event){
+				//console.log( event )
+				if( num != '' ){
+					this.a += num
+				}else{
+					this.a++
+				}
+			}
+		},
+		components:{
+			'btn':btn
+		}
+	})
+</script>
+</body>
+</html>

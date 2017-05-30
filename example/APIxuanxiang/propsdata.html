@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>propsdata</div> 帮助扩展的方式来数据传值  用于开发环境 不用于生产环境
+<br/>
+<div id="app">
+	<header></header>
+</div>
+
+<script>
+	var header_aaaa = Vue.extend({
+		template:'<p>{{message}}-{{a}}</p>',
+		data:function(){
+			return {
+				message:'hello my is header'
+			}
+		},
+		props:['a']
+	})
+
+	new header_aaaa({
+		propsData:{
+			a:1
+		}
+	}).$mount('header');
+</script>
+</body>
+</html>

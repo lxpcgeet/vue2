@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>Vue.directive 自定义指令  全局注册</div>
+<br/>
+<div id="app"></div>
+<script>
+	//注册
+  	Vue.directive('my-directive',{
+		  bind:function(){//当被绑定
+		    
+		  },
+		  inserted:function(){//已经插入完成了 当绑定到节点
+		    
+		  },
+		  update:function(){//被更新了 组件更新
+		    
+		  },
+		  componentUpdated:function(){//数据被更新完成 组件更新完成
+		    
+		  },
+		  unbind:function(){//被卸载了  解绑之后 就是vue不再控制这个元素了  但是元素还在
+		    
+		  }
+	})
+	
+	
+	
+</script>
+</body>
+</html>

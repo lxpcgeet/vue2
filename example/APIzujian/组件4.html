@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>组件3 componet-4</div>component标签
+<br/>
+<div id="app">
+	<component v-bind:is='who'></component> is 是vue自定义指令 表示component绑定的是pa
+	
+</div>
+<script>
+pa = {
+        template:'<div>this is pa {{a}}</div>',
+        data:function(){//这里的数据是返回值的形式
+                return {
+                        a:1
+                }
+        }
+}
+pb = {
+        template:'<div>this is pb</div>'
+}
+pc = {
+        template:'<div>this is pc</div>'
+}
+var vm = new Vue({
+        el:'#app',
+        data:{
+                who:'pa'
+        },
+        components:{
+                'pa':pa,
+                'pb':pb,
+                'pc':pc,
+        }
+})
+	
+</script>
+</body>
+</html>

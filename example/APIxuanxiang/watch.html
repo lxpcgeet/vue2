@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>watch 购物车</div> 
+	
+<br/>
+<div id="app">
+	<goods :danjia="danjia" :nums="nums" :jia="jia" :jian="jian"></goods> 
+</div>
+
+<script>
+//this.$parent   delimiters  这个方法可以替换大胡子
+	goods = {
+		template:`<div>
+			<p>单价：{{ danjia }}</p>
+			<p>
+				<button @click="jia">+</button>
+				<button @click="jian">-</button>
+			</p>
+			<p>数量：{{ nums }}</p>
+			<p>总价：{{ total }}</p>
+			</div>`,
+		props:['danjia','nums','jia','jian'],
+		
+		computed:{
+			total:function(){
+				var total = this.nums * this.danjia;
+				if( total > 100  && total <= 200){
+					return total - 20
+				}else if( total > 200 ){
+					return total -50
+				}else {
+					return total
+				}
+			} 
+		}
+		 
+	}
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			nums:0,
+			danjia:20,
+		},
+		methods:{
+			jia:function(){
+				this.nums++
+			},
+			jian:function(){
+				this.nums--
+			}
+		},
+		components:{
+			'goods':goods,
+		}
+	})
+
+	vm.$watch('nums',function(newVal,oldVal){
+		if( newVal < 0 ){
+			vm.nums = 0
+		}
+	})
+	
+</script>
+</body>
+</html>

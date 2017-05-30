@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>component 标签和属性放到一块就成为一个组件了</div>
+<br/>
+<div id="app">
+	<hello></hello>   <!--hello 是一个标签  在加上样式等属性就形成一个组件-->
+	<world></world>
+</div>
+<hello></hello>
+<script>
+	//组件和 指令非常相似  所以写项目的时候 要不就都用组件  要不就都用指令   避免混乱
+	Vue.component('hello',{//全局注册  但是hello标签要在构造器里边
+	  template:'<div>全句话注册 -&gt;&lt;hello&gt;</div>'
+	})
+	
+	worldworld = {
+	  template:'<div>局部的组件 -&gt;&lt;world&gt</div>'
+	}
+	
+	
+  var aaaa =new Vue({
+    el:'#app',
+    data:{
+      message:'hello vue!'
+    },
+    components:{//components  这个一定要添加s
+      'world':worldworld//这个地方key要用引号引起来
+    }
+  })
+</script>
+</body>
+</html>

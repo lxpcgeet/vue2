@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>mixin 混入   extends扩展</div> 
+	
+<br/>
+<div id="app">
+	{{ message }}
+	<p><button @click='jia'>+</button></p>
+</div>
+
+<script>
+//混入如果重名  除了生命周期 其余的只要同名 都会被原生的覆盖
+
+	//执行顺序   1.全局  2.扩展 3.混入 4.原生
+
+	//extends: 只支持一个
+
+
+
+
+	//写一个混入
+	var aaa = {//生命周期不会覆盖  先执行混入的生命周期 再执行原装的生命周期
+		created:function(){
+			console.log( '我是混入' )
+		},
+		methods:{
+			jia:function(){
+				console.log( '我是混入被加了' )
+			}
+		}
+	}
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			message:'nihao'
+		},
+		methods:{
+			jia:function(){
+				console.log( '我是原装倍加了' )
+			}
+		},
+		created:function(){
+			console.log( '我是构造器里原装的混入' )
+		},
+		mixins:[aaa]
+	})
+	
+	
+</script>
+</body>
+</html>
