@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<script src='jquery-2.1.3.min.js'></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>实例方法 常用的4个</div>
+1.$mount  这个实例方法是  加载
+2.$destroy  这个实例方法是卸载  意思是和构造器分离了  但是不是从用户面前消失
+3.$forceUpdate 刷新
+4.$nextTick 有回调函数  数据修改后被调用
+<br/>
+<div id="app">
+	
+</div>
+<p>
+	<button onclick='xiezai()'>卸载</button>
+	<button onclick='shuaxin()'>刷新</button>
+	<button onclick='xiugai()'>修改</button>
+</p>
+<script>
+	var aaa = Vue.extend({
+		template:'<div>你是一个大傻瓜</div>',
+		destroyed:function(){
+			console.log( '我是被卸载之后' )
+		},
+		updated:function(){
+			console.log( '我是被刷新之后' )
+		}
+	})
+	var vm = new aaa().$mount('#app')
+
+	function xiezai(){
+		vm.$destroy();
+	}
+
+	function shuaxin(){
+		vm.$forceUpdate();
+	}
+
+	function xiugai(){
+
+		vm.$nextTick(function(){//修改完成后被调用
+			console.log('更新完后被调用')
+		})
+	}
+</script>
+</body>
+</html>

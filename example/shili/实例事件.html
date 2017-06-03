@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<script src='jquery-2.1.3.min.js'></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>实例事件</div>
+1.$on 添加事件在methods里边
+2.$once 添加的事件只执行一次
+3.$emit 执行添加的事件
+4.$off 卸载事件
+<br/>
+<div id="app">
+	<p>{{a}}</p>
+	<button @click='jia'>+</button>
+</div>
+
+	<p>
+		<button onclick='jian()'>-</button>
+		<button onclick='off()'>关闭</button>
+	</p>
+<script>
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			a:1
+		},
+		methods:{
+			jia:function(){
+				this.a++
+			}
+		}
+	})
+//$once 只执行一次
+	vm.$on('jian',function(num){
+		console.log( '执行了jian' )
+		this.a -= num;
+	})
+	console.log( vm )
+	function jian(){
+		vm.$emit('jian','2')
+	}
+
+	function off(){
+		vm.$off('jian')
+	}
+
+
+
+
+
+</script>
+</body>
+</html>
