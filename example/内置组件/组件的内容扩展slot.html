@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>slot</div> 组件只允许标签的属性来传值  slot 是标签的内容扩展
+<br/>
+<div id="app">
+
+	<world v-for="aaa in goods">
+			<span slot="name">{{aaa.name}}</span>
+			<span slot="num">{{aaa.num}}</span>	
+	</world>
+</div>
+
+<template id="demo">
+	<p>
+		名称：<slot name='name'></slot>
+		数量：<slot name='num'></slot>
+	</p>
+</template>
+<script>
+	
+	goods = {
+		template:'#demo'
+	}
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			goods:[
+				{name:'pen',num:'10'},
+				{name:'car',num:'1'}
+			]
+		},
+		components:{
+			'world':goods
+		}
+	})
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="../../assets/js/vue.js"></script>
+	<link rel="stylesheet" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div>vue-else-if  vue动画transition</div>  vue1是自身进行计算  vue2把整个动画用css3完成  animate.css 这是一个css3动画库
+<br/>
+<div id="app">
+	<!-- <div v-if="type==='A'">
+		A
+	</div>
+	<div v-else-if="type==='B'">
+		B
+	</div>
+	<div v-else>
+		C
+	</div> -->
+
+	<transition name='fade'>
+		<p v-if='show'>{{message}}</p>
+	</transition>
+
+	<button @click='hidden'>hidden</button>
+
+</div>
+
+<style>
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 1s;
+	}
+	.fade-enter,
+	.fade-leave-active {
+		opactiy:0;
+	}
+</style>
+
+<script>
+	
+	// var vm = new Vue({
+	// 	el:'#app',
+	// 	data:{
+	// 		//type:'B'
+	// 	}
+	// })
+	
+
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			message:'hello vue',
+			show:true
+		},
+		methods:{
+			hidden:function(){
+				this.show = false;
+			}
+		}
+	})
+	
+</script>
+</body>
+</html>
